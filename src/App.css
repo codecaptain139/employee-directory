@@ -24,9 +24,20 @@
 button{
     padding: 5px;
     margin-top: 10px;
+    margin-bottom: 10px;
     border-radius: 10px;
+}
+
+input{
+    padding: 4px;
+    border-radius: 8px;
 }
 
 button:hover{
     cursor: pointer;
+}
+
+.form-group{
+    /* border: 1px solid red; */
+    margin: 10px;
 }
