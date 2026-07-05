@@ -65,10 +65,16 @@ const handleAddEmployee = () => {
 const [name, setName] = useState("");
 const [role, setRole] = useState("");
 const [country, setCountry] = useState("");
+const [search, setSearch] = useState("");
 
   return(
     <div className='app'>
       <h1>Employee Directory</h1>
+
+      <div className="form-group">
+        <label>Search: </label>
+        <input type="text" placeholder='Search Employee' value={search} onChange={(e) => setSearch(e.target.value)}/>
+      </div>
 
       <div className="form-group">
         <label>Name: </label>
@@ -88,16 +94,20 @@ const [country, setCountry] = useState("");
       <button onClick={handleAddEmployee}>Add Employee</button>
 
       {
-        employees.map((employee) => (
-          <EmployeeCard
-            key = {employee.id}
-            id = {employee.id}
-            name = {employee.name}
-            role = {employee.role}
-            country = {employee.country}
-            onDelete = {handleDelete}
-          />
-        ))
+        employees
+          .filter((employee) => {
+            return employee.name.toLowerCase().includes(search.toLowerCase());
+          })
+          .map((employee) => (
+            <EmployeeCard
+              key = {employee.id}
+              id = {employee.id}
+              name = {employee.name}
+              role = {employee.role}
+              country = {employee.country}
+              onDelete = {handleDelete}
+            />
+          ))
       }
     </div>
   )
